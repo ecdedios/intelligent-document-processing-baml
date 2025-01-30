@@ -52,42 +52,6 @@ class DropOffPackageReceipt {
 
 // FUNCTIONS
 
-function ExtractAppointmentFromImage(appointment_card: image) -> Appointment {
-  client "openai/gpt-4o"
-  prompt #"
-    {{_.role("user")}}
-
-    Extract details from this image of an appointment card reminder:
-    {{ appointment_card }}
-
-    {{ ctx.output_format }}
-  "#
-}
-
-function ExtractNutritionLabelFromImage(nutrition_label: image) -> NutritionLabel {
-  client "openai/gpt-4o"
-  prompt #"
-    {{_.role("user")}}
-
-    Extract the name, description, and nutritional value details from this image:
-    {{ nutrition_label }}
-
-    {{ ctx.output_format }}
-  "#
-}
-
-function ExtractDropOffPackageReceiptFromImage(package_label: image) -> DropOffPackageReceipt {
-  client "openai/gpt-4o"
-  prompt #"
-    {{_.role("user")}}
-
-    Extract the details from this image:
-    {{ package_label }}
-
-    {{ ctx.output_format }}
-  "#
-}
-
 function ChooseATool(user_image: image) -> Appointment | NutritionLabel| DropOffPackageReceipt {
 client "openai/gpt-4o"
 prompt #"
@@ -101,36 +65,7 @@ prompt #"
 }
 
 
-
-
 // TESTS
-
-test Test_APPOINTMENT {
-functions [ExtractAppointmentFromImage]
-  args {
-    appointment_card {
-      url "https://idp-baml-tutorial.s3.us-east-1.amazonaws.com/appointment.jpg"
-    }
-  }
-}
-
-test Test_NUTRITION {
-functions [ExtractNutritionLabelFromImage]
-  args {
-    nutrition_label {
-      url "https://idp-baml-tutorial.s3.us-east-1.amazonaws.com/nutrition.jpg"
-    }
-  }
-}
-
-test Test_PACKAGE {
-functions [ExtractDropOffPackageReceiptFromImage]
-  args {
-    package_label {
-      url "https://idp-baml-tutorial.s3.us-east-1.amazonaws.com/package.jpg"
-    }
-  }
-}
 
 test Test_TOOL {
 functions [ChooseATool]
