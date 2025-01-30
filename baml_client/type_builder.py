@@ -20,7 +20,7 @@ from baml_py.type_builder import TypeBuilder as _TypeBuilder, ClassPropertyBuild
 class TypeBuilder(_TypeBuilder):
     def __init__(self):
         super().__init__(classes=set(
-          ["Resume",]
+          ["Appointment",]
         ), enums=set(
           []
         ))
@@ -33,4 +33,4 @@ class TypeBuilder(_TypeBuilder):
 
 
 
-__all__ = ["TypeBuilder"]
+__all__ = ["TypeBuilder"]

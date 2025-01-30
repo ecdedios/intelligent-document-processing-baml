@@ -16,7 +16,7 @@
 import baml_py
 from enum import Enum
 from pydantic import BaseModel, ConfigDict
-from typing import Dict, List, Optional, Union, Literal
+from typing import Dict, Generic, List, Optional, TypeVar, Union, Literal
 
 from . import types
 from .types import Checked, Check
@@ -28,10 +28,17 @@ from .types import Checked, Check
 #
 ###############################################################################
 
+T = TypeVar('T')
+class StreamState(BaseModel, Generic[T]):
+    value: T
+    state: Literal["Pending", "Incomplete", "Complete"]
 
-class Resume(BaseModel):
-    name: Optional[str] = None
-    email: Optional[str] = None
-    experience: List[Optional[str]]
-    skills: List[Optional[str]]
-
+
+class Appointment(BaseModel):
+    day_of_week: Optional[str] = None
+    month: Optional[str] = None
+    date: Optional[int] = None
+    year: Optional[int] = None
+    hour: Optional[int] = None
+    minute: Optional[int] = None
+    ampm: Optional[str] = None

@@ -50,11 +50,11 @@ class BamlAsyncClient:
 
 
     
-    async def ExtractResume(
+    async def ExtractAppointmentFromImage(
         self,
-        resume: str,
+        appointment_card: baml_py.Image,
         baml_options: BamlCallOptions = {},
-    ) -> types.Resume:
+    ) -> types.Appointment:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
         tb = __tb__._tb # type: ignore (we know how to use this private attribute)
@@ -63,15 +63,15 @@ class BamlAsyncClient:
       __cr__ = baml_options.get("client_registry", None)
 
       raw = await self.__runtime.call_function(
-        "ExtractResume",
+        "ExtractAppointmentFromImage",
         {
-          "resume": resume,
+          "appointment_card": appointment_card,
         },
         self.__ctx_manager.get(),
         tb,
         __cr__,
       )
-      return cast(types.Resume, raw.cast_to(types, types))
+      return cast(types.Appointment, raw.cast_to(types, types, partial_types, False))
     
 
 
@@ -84,11 +84,11 @@ class BamlStreamClient:
       self.__ctx_manager = ctx_manager
 
     
-    def ExtractResume(
+    def ExtractAppointmentFromImage(
         self,
-        resume: str,
+        appointment_card: baml_py.Image,
         baml_options: BamlCallOptions = {},
-    ) -> baml_py.BamlStream[partial_types.Resume, types.Resume]:
+    ) -> baml_py.BamlStream[partial_types.Appointment, types.Appointment]:
       __tb__ = baml_options.get("tb", None)
       if __tb__ is not None:
         tb = __tb__._tb # type: ignore (we know how to use this private attribute)
@@ -97,9 +97,9 @@ class BamlStreamClient:
       __cr__ = baml_options.get("client_registry", None)
 
       raw = self.__runtime.stream_function(
-        "ExtractResume",
+        "ExtractAppointmentFromImage",
         {
-          "resume": resume,
+          "appointment_card": appointment_card,
         },
         None,
         self.__ctx_manager.get(),
@@ -107,14 +107,14 @@ class BamlStreamClient:
         __cr__,
       )
 
-      return baml_py.BamlStream[partial_types.Resume, types.Resume](
+      return baml_py.BamlStream[partial_types.Appointment, types.Appointment](
         raw,
-        lambda x: cast(partial_types.Resume, x.cast_to(types, partial_types)),
-        lambda x: cast(types.Resume, x.cast_to(types, types)),
+        lambda x: cast(partial_types.Appointment, x.cast_to(types, types, partial_types, True)),
+        lambda x: cast(types.Appointment, x.cast_to(types, types, partial_types, False)),
         self.__ctx_manager.get(),
       )
     
 
 b = BamlAsyncClient(DO_NOT_USE_DIRECTLY_UNLESS_YOU_KNOW_WHAT_YOURE_DOING_RUNTIME, DO_NOT_USE_DIRECTLY_UNLESS_YOU_KNOW_WHAT_YOURE_DOING_CTX)
 
-__all__ = ["b"]
+__all__ = ["b"]
