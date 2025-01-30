@@ -42,3 +42,39 @@ class Appointment(BaseModel):
     hour: Optional[int] = None
     minute: Optional[int] = None
     ampm: Optional[str] = None
+
+class DropOffPackageReceipt(BaseModel):
+    line_item: List["ReceiptItem"]
+    location: Optional[str] = None
+    address: Optional[str] = None
+    day_of_week: Optional[str] = None
+    day: Optional[int] = None
+    month: Optional[str] = None
+    year: Optional[int] = None
+    hour: Optional[int] = None
+    minute: Optional[int] = None
+    ampm: Optional[str] = None
+    total_packages: Optional[int] = None
+    total_packages_ui: Optional[str] = None
+
+class NutritionLabel(BaseModel):
+    product: Optional[str] = None
+    description: Optional[str] = None
+    calories: Optional[int] = None
+    fat: Optional[int] = None
+    fat_ui: Optional[str] = None
+    fat_dv: Optional[float] = None
+    sodium: Optional[int] = None
+    sodium_ui: Optional[str] = None
+    sodium_dv: Optional[float] = None
+    carb: Optional[int] = None
+    carb_ui: Optional[str] = None
+    carb_dv: Optional[float] = None
+    protein: Optional[int] = None
+    protein_ui: Optional[str] = None
+    protein_dv: Optional[float] = None
+
+class ReceiptItem(BaseModel):
+    tracking_number: Optional[str] = None
+    weight: Optional[float] = None
+    weight_ui: Optional[str] = None
