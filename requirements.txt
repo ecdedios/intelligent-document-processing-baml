@@ -1,4 +1,3 @@
 baml-py
 pydantic
 notebook
-fastapi
