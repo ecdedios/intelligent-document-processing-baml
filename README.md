@@ -2,12 +2,18 @@
 
 > A hands-on exploration of a new programming language using Python, Amazon S3, and FastAPI.
 
+## Medium Blog Post
+
+https://medium.com/data-science-nerd/simplify-your-llm-powered-intelligent-document-processing-system-with-baml-b2c4dc2202d1
+
 ## Documentation
 
 [BAML Homepage](https://www.boundaryml.com)  
 [Python Installation Instuctions](https://docs.boundaryml.com/guide/installation-language/python)
 
 ## Screenshots
+
+See the article on [Medium](https://medium.com/data-science-nerd/simplify-your-llm-powered-intelligent-document-processing-system-with-baml-b2c4dc2202d1).
 
 ## Usage
 
